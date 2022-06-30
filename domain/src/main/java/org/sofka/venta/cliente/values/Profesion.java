@@ -18,12 +18,12 @@ public class Profesion implements ValueObject<Profesion.Props> {
         return new Props() {
             @Override
             public String Nombre() {
-                return null;
+                return nombre;
             }
 
             @Override
             public String Cargo() {
-                return null;
+                return cargo;
             }
         };
     }
