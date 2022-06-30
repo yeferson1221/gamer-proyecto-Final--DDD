@@ -1,16 +1,24 @@
 package org.sofka.venta.cliente.events;
 
 import co.com.sofka.domain.generic.DomainEvent;
-import org.sofka.venta.cliente.values.Rol;
+import org.sofka.venta.cliente.values.CuentaClienteId;
+import org.sofka.venta.cliente.values.RolCliente;
 
 public class ClienteCreado extends DomainEvent {
-    private final Rol rol;
-    public ClienteCreado(Rol rol) {
+    private final CuentaClienteId cuentaClienteId;
+    private final RolCliente rolCliente;
+    public ClienteCreado(CuentaClienteId cuentaClienteId, RolCliente rolCliente) {
         super("co.com.sofka.venta.ClienteCreado");
-        this.rol = rol;
+        this.cuentaClienteId=cuentaClienteId;
+        this.rolCliente = rolCliente;
+
     }
 
-    public Rol getRol() {
-        return rol;
+    public CuentaClienteId getCuentaClienteId() {
+        return cuentaClienteId;
+    }
+
+    public RolCliente getRol() {
+        return rolCliente;
     }
 }

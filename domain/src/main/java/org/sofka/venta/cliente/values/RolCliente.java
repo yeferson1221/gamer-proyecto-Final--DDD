@@ -4,10 +4,10 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class Rol implements ValueObject<String> {
+public class RolCliente implements ValueObject<String> {
     private final String rol;
 
-    public Rol(String rol) {
+    public RolCliente(String rol) {
         this.rol = Objects.requireNonNull(rol,"No puede ser null");
     }
 
@@ -16,7 +16,7 @@ public class Rol implements ValueObject<String> {
         return rol;
     }
 
-    public Rol cambiarRol(String rol){
-        return new Rol(rol);
+    public RolCliente cambiarRol(String rol){
+        return new RolCliente(rol);
     }
 }

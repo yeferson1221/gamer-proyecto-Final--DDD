@@ -2,16 +2,16 @@ package org.sofka.venta.cliente;
 
 import co.com.sofka.domain.generic.Entity;
 import org.sofka.venta.cliente.values.CuentaClienteId;
-import org.sofka.venta.cliente.values.Rol;
+import org.sofka.venta.cliente.values.RolCliente;
 
 public class CuentaCliente extends Entity<CuentaClienteId> {
-    private Rol rol;
+    private RolCliente rolCliente;
 
-    public CuentaCliente(CuentaClienteId Id) {
+    public CuentaCliente(CuentaClienteId Id, RolCliente rolCliente) {
         super(Id);
-        this.rol = rol;
+        this.rolCliente = rolCliente;
     }
-    public void cambiarRol(Rol role){
-        this.rol = rol.cambiarRol(role.value());
+    public void cambiarRol(RolCliente role){
+        this.rolCliente = rolCliente.cambiarRol(role.value());
     }
 }
