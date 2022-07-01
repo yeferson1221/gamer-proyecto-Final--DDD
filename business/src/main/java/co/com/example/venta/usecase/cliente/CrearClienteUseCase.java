@@ -14,7 +14,12 @@ public class CrearClienteUseCase extends UseCase<RequestCommand<CrearClienteComm
         var cliente = new Cliente(
                 command.getClienteId(),
                 command.getCuentaClienteId(),
-                command.getRolCliente()
+                command.getRolCliente(),
+                command.getNombre(),
+                command.getCargo(),
+                command.getGusto(),
+                command.getActividad()
+
         );
 
         emit().onResponse(new ResponseEvents(cliente.getUncommittedChanges()));

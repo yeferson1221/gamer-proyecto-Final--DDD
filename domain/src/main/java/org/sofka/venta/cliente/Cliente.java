@@ -15,12 +15,13 @@ public class Cliente extends AggregateEvent<ClienteId> {
     protected Preferencias preferencias;
     protected Profesion profesion;
 
-    public Cliente(ClienteId entityId, CuentaClienteId cuentaClienteId, RolCliente rolCliente) {
+    public Cliente(ClienteId entityId, CuentaClienteId cuentaClienteId, RolCliente rolCliente, String nombre, String cargo, String gusto, String actividad) {
         super(entityId);
-        appendChange(new ClienteCreado(cuentaClienteId, rolCliente)).apply();
+        appendChange(new ClienteCreado(cuentaClienteId, rolCliente, nombre, actividad, cargo, gusto)).apply();
         subscribe(new ClienteEventChange(this));
 
     }
+
 
     private Cliente(ClienteId id) {
         super(id);
@@ -31,8 +32,8 @@ public class Cliente extends AggregateEvent<ClienteId> {
         appendChange(new RolCuentaCambiadaCliente(cuentaClienteId, rolCliente)).apply();
     }
 
-    public void cambiarProfesionCliente( Profesion profesion, String nombre, String cargo) {
-        appendChange(new ProfesionCambiadaCliente(profesion, nombre, cargo)).apply();
+    public void cambiarProfesionCliente( String nombre, String cargo) {
+        appendChange(new ProfesionCambiadaCliente(nombre, cargo)).apply();
     }
     public void cambiarPreferenciaCliente(String gusto, String actividad) {
         appendChange(new PreferenciaCambiadaCliente(gusto, actividad)).apply();
@@ -43,4 +44,5 @@ public class Cliente extends AggregateEvent<ClienteId> {
         events.forEach(cliente::applyEvent);
         return cliente;
     }
+
 }

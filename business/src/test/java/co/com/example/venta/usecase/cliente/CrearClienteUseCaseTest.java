@@ -26,7 +26,11 @@ class CrearClienteUseCaseTest {
         ClienteId clienteId = ClienteId.of(ClienteId.Type.CC, "32212234");
         RolCliente rolCliente = new RolCliente("Usuario");
         CuentaClienteId cuentaClienteId = new CuentaClienteId("3", CuentaClienteId.Type.CC);
-        var command = new CrearClienteCommand( clienteId, rolCliente, cuentaClienteId);
+        String nombre = "General";
+        String cargo = "Gerente Venta";
+        String tipo = "ddd";
+        String actividad = "ddddf";
+        var command = new CrearClienteCommand( clienteId, rolCliente, cuentaClienteId,nombre, cargo, tipo, actividad);
 
 
         //act

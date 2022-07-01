@@ -9,7 +9,7 @@ public class ProfesionCambiadaCliente extends DomainEvent {
 
     private final String nombre;
     private final String cargo;
-    public ProfesionCambiadaCliente( Profesion profesion, String nombre, String cargo){
+    public ProfesionCambiadaCliente(String nombre, String cargo){
         super("co.com.sofka.venta.ProfesionCuentaCambiadaCliente");
 
         this.nombre = nombre;

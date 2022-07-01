@@ -5,12 +5,16 @@ import org.sofka.venta.cliente.events.ClienteCreado;
 import org.sofka.venta.cliente.events.PreferenciaCambiadaCliente;
 import org.sofka.venta.cliente.events.ProfesionCambiadaCliente;
 import org.sofka.venta.cliente.events.RolCuentaCambiadaCliente;
+import org.sofka.venta.cliente.values.Preferencias;
+import org.sofka.venta.cliente.values.Profesion;
 
 
 public class ClienteEventChange extends EventChange {
     public ClienteEventChange(Cliente cliente) {
         apply((ClienteCreado event) ->{
             cliente.cuentaCliente = new CuentaCliente(event.getCuentaClienteId(), event.getRol());
+            cliente.preferencias= new Preferencias(event.getGusto(), event.getActividad());
+            cliente.profesion= new Profesion(event.getNombre(), event.getCargo());
         });
         apply((RolCuentaCambiadaCliente event) ->{
             if(!cliente.cuentaCliente.identity().equals(event.getCuentaclienteId())){
