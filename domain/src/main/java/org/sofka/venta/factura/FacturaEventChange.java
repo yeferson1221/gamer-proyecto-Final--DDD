@@ -2,6 +2,7 @@ package org.sofka.venta.factura;
 
 import co.com.sofka.domain.generic.EventChange;
 import org.sofka.venta.factura.events.FacturaCreado;
+import org.sofka.venta.factura.events.FacturaCreadoBeneficio;
 import org.sofka.venta.factura.values.Valor;
 
 public class FacturaEventChange extends EventChange {
@@ -9,6 +10,12 @@ public class FacturaEventChange extends EventChange {
         apply((FacturaCreado event) ->{
            factura.valor = new Valor(45,7L);
             factura.sector = new Sector(event.getSectorId(), event.getDomicilio());
+        });
+
+        apply((FacturaCreadoBeneficio event) ->{
+            factura.valor = new Valor(45,7L);
+            factura.sector = new Sector(event.getSectorId(), event.getDomicilio());
+            factura.beneficio = new Beneficio(event.getBeneficioId(), event.getBono());
         });
     }
 }

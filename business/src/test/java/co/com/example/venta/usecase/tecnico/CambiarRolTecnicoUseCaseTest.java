@@ -1,5 +1,6 @@
-package co.com.example.venta.usecase.cliente;
+package co.com.example.venta.usecase.tecnico;
 
+import co.com.example.venta.usecase.cliente.CambirRolClienteUseCase;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
@@ -10,6 +11,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.sofka.venta.Tecnico.Command.CambiarRolTecnicoCommand;
+import org.sofka.venta.Tecnico.events.RolCuentaCambiadaTecnico;
+import org.sofka.venta.Tecnico.events.TecnicoCreado;
+import org.sofka.venta.Tecnico.values.CuentaTecnicoId;
+import org.sofka.venta.Tecnico.values.RolTecnico;
+import org.sofka.venta.Tecnico.values.TecnicoId;
 import org.sofka.venta.cliente.command.CambiarRolClienteCommand;
 import org.sofka.venta.cliente.events.ClienteCreado;
 import org.sofka.venta.cliente.events.RolCuentaCambiadaCliente;
@@ -19,24 +26,25 @@ import org.sofka.venta.cliente.values.RolCliente;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class CambirRolClienteUseCaseTest {
+class CambiarRolTecnicoUseCaseTest {
     @Mock
     DomainEventRepository repository;
 
     @InjectMocks
-    CambirRolClienteUseCase usecase;
+    CambiarRolTecnicoUseCase usecase;
 
     @Test
-    void cambiarRolCliente() {
+    void cambiarRolTecnico() {
         //arrange
-        ClienteId clienteId = ClienteId.of(ClienteId.Type.CC,"ff");
-        CuentaClienteId cuentaClienteId = CuentaClienteId.of("fffff");
-        String rolCliente = "General";
-        var command = new CambiarRolClienteCommand(clienteId, cuentaClienteId, new RolCliente(rolCliente));
-        when(repository.getEventsBy(clienteId.value())).thenReturn(history());
+        TecnicoId tecnicoId = TecnicoId.of(TecnicoId.Type.CC,"ff");
+        CuentaTecnicoId cuentaTecnicoId = CuentaTecnicoId.of("fffff");
+        String rolTecnico = "General";
+        var command = new CambiarRolTecnicoCommand(tecnicoId, cuentaTecnicoId, new RolTecnico(rolTecnico));
+        when(repository.getEventsBy(tecnicoId.value())).thenReturn(history());
         usecase.addRepository(repository);
 
         //act
@@ -46,18 +54,17 @@ class CambirRolClienteUseCaseTest {
                 .getDomainEvents();
 
         //assert
-        var event = (RolCuentaCambiadaCliente)events.get(0);
-        Assertions.assertEquals("General", event.getRolCuentaCliente().value());
+        var event = (RolCuentaCambiadaTecnico)events.get(0);
+        Assertions.assertEquals("General", event.getRolTecnico().value());
 
     }
 
     private List<DomainEvent> history() {
-        RolCliente rolCliente = new RolCliente("Usuario");
-        CuentaClienteId cuentaClienteId = CuentaClienteId.of("fffff");
+        RolTecnico rolTecnico = new RolTecnico("Usuario");
+        CuentaTecnicoId cuentaTecnicoId = CuentaTecnicoId.of("fffff");
         return List.of(
-                new ClienteCreado(cuentaClienteId,rolCliente)
+                new TecnicoCreado(cuentaTecnicoId,rolTecnico)
         );
     }
-
 
 }

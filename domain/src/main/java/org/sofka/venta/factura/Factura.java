@@ -3,10 +3,8 @@ package org.sofka.venta.factura;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import org.sofka.venta.factura.events.FacturaCreado;
-import org.sofka.venta.factura.values.Domicilio;
-import org.sofka.venta.factura.values.FacturaId;
-import org.sofka.venta.factura.values.SectorId;
-import org.sofka.venta.factura.values.Valor;
+import org.sofka.venta.factura.events.FacturaCreadoBeneficio;
+import org.sofka.venta.factura.values.*;
 
 import java.util.List;
 
@@ -19,6 +17,12 @@ public class Factura extends AggregateEvent<FacturaId> {
     public Factura(FacturaId facturaId, Valor valor, SectorId sectorId, Domicilio domicilio ) {
         super(facturaId);
         appendChange(new FacturaCreado(facturaId, valor,sectorId, domicilio)).apply();
+        subscribe(new FacturaEventChange(this));
+    }
+
+    public Factura(FacturaId facturaId, Valor valor, SectorId sectorId, Domicilio domicilio, BeneficioId beneficioId, Bono bono ) {
+        super(facturaId);
+        appendChange(new FacturaCreadoBeneficio(facturaId, valor,sectorId, domicilio, beneficioId, bono)).apply();
         subscribe(new FacturaEventChange(this));
     }
 

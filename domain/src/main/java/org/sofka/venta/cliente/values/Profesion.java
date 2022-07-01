@@ -32,4 +32,9 @@ public class Profesion implements ValueObject<Profesion.Props> {
         String Nombre();
         String Cargo();
     }
+
+    public Profesion cambiarProfesionCliente(String nombre, String cargo){
+
+        return new Profesion(nombre,cargo);
+    }
 }

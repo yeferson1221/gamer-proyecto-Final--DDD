@@ -16,7 +16,8 @@ public class RolCliente implements ValueObject<String> {
         return rolCliente;
     }
 
-    public RolCliente cambiarRol(String rolCliente){
+    public RolCliente cambiarRolCliente(String rolCliente){
+
         return new RolCliente(rolCliente);
     }
 }
