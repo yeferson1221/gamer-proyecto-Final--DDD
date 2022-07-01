@@ -2,6 +2,7 @@ package org.sofka.venta.asesor;
 
 import co.com.sofka.domain.generic.Entity;
 import org.sofka.venta.asesor.values.BonificacionId;
+import org.sofka.venta.asesor.values.Tipo;
 
 public class Bonificacion extends Entity<BonificacionId> {
 

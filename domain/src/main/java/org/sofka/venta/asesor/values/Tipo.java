@@ -1,4 +1,4 @@
-package org.sofka.venta.asesor;
+package org.sofka.venta.asesor.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 

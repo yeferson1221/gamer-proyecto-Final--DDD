@@ -3,7 +3,7 @@ package org.sofka.venta.cliente;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import org.sofka.venta.cliente.events.ClienteCreado;
-import org.sofka.venta.cliente.events.RolCuentaCambiada;
+import org.sofka.venta.cliente.events.RolCuentaCambiadaCliente;
 import org.sofka.venta.cliente.values.*;
 
 import java.util.List;
@@ -23,8 +23,8 @@ public class Cliente extends AggregateEvent<ClienteId> {
         super(id);
         subscribe(new ClienteEventChange(this));
     }
-    public void cambiarRolCuenta(CuentaClienteId cuentaClienteId, RolCliente rolClienteCuenta){
-        appendChange(new RolCuentaCambiada(cuentaClienteId, rolClienteCuenta)).apply();
+    public void cambiarRolCliente(CuentaClienteId cuentaClienteId, RolCliente rolCliente){
+        appendChange(new RolCuentaCambiadaCliente(cuentaClienteId, rolCliente)).apply();
     }
     public static Cliente from(ClienteId id, List<DomainEvent> events){
         var cliente = new Cliente((id));

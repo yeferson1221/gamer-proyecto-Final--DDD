@@ -18,6 +18,8 @@ public class ClienteCreado extends DomainEvent {
         return cuentaClienteId;
     }
 
+
+
     public RolCliente getRol() {
         return rolCliente;
     }

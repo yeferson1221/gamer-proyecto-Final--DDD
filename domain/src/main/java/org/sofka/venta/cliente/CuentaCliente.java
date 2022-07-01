@@ -11,7 +11,7 @@ public class CuentaCliente extends Entity<CuentaClienteId> {
         super(Id);
         this.rolCliente = rolCliente;
     }
-    public void cambiarRol(RolCliente role){
+    public void cambiarRolCliente(RolCliente role){
         this.rolCliente = rolCliente.cambiarRol(role.value());
     }
 }

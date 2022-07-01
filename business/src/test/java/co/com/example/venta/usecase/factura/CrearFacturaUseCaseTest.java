@@ -1,5 +1,6 @@
-package co.com.example.venta.usecase.cliente;
+package co.com.example.venta.usecase.factura;
 
+import co.com.example.venta.usecase.cliente.CrearClienteUseCase;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.support.RequestCommand;
 import org.junit.jupiter.api.Assertions;
@@ -7,26 +8,32 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.sofka.venta.cliente.CuentaCliente;
 import org.sofka.venta.cliente.command.CrearClienteCommand;
 import org.sofka.venta.cliente.events.ClienteCreado;
 import org.sofka.venta.cliente.values.ClienteId;
 import org.sofka.venta.cliente.values.CuentaClienteId;
 import org.sofka.venta.cliente.values.RolCliente;
+import org.sofka.venta.factura.Factura;
+import org.sofka.venta.factura.command.CrearFacturaCommand;
+import org.sofka.venta.factura.events.FacturaCreado;
+import org.sofka.venta.factura.values.Domicilio;
+import org.sofka.venta.factura.values.FacturaId;
+import org.sofka.venta.factura.values.SectorId;
+import org.sofka.venta.factura.values.Valor;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(MockitoExtension.class)
-class CrearClienteUseCaseTest {
+class CrearFacturaUseCaseTest {
     @InjectMocks
-    CrearClienteUseCase useCase;
+    CrearFacturaUseCase useCase;
     @Test
-    public void crearCliente(){
+    public void crearFactura(){
         //arrange
-        ClienteId clienteId = ClienteId.of(ClienteId.Type.CC, "32212234");
-        RolCliente rolCliente = new RolCliente("Usuario");
-        CuentaClienteId cuentaClienteId = new CuentaClienteId("3", CuentaClienteId.Type.CC);
-        var command = new CrearClienteCommand( clienteId, rolCliente, cuentaClienteId);
+        FacturaId facturaId = FacturaId.of(FacturaId.Type.CC, "32212234");
+        Valor valor = new Valor(2,8L);
+        SectorId sectorId = SectorId.of("C");
+        Domicilio domicilio = new Domicilio("Factura");
+        var command = new CrearFacturaCommand( facturaId, valor, sectorId, domicilio);
 
 
         //act
@@ -37,9 +44,7 @@ class CrearClienteUseCaseTest {
 
 
         //assert
-        var event = (ClienteCreado)events.get(0);
-        Assertions.assertEquals("Usuario", event.getRol().value());
-        Assertions.assertEquals("Usuario", event.getRol().value());
+        var event = (FacturaCreado)events.get(0);
 
     }
 }
