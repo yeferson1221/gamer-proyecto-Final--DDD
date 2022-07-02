@@ -30,7 +30,7 @@ public class AsesorEventChange extends EventChange {
             asesor.bonificacion = new Bonificacion(event.getBonificacionId(),event.getTipoBonificacion());
         });
         apply((AsesorBonificacionCambiada event) ->{
-            asesor.cambiarTipoBonificacion(event.getValor(), event.getCantidad());
+            asesor.cambiarTipoBonificacion(event.getAsesorId(), event.getValor(), event.getCantidad());
         });
     }
 }

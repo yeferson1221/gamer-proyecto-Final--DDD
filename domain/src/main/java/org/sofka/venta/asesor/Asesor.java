@@ -35,8 +35,8 @@ public class Asesor extends AggregateEvent<AsesorId> {
         subscribe(new AsesorEventChange(this));
     }
 
-    public void cambiarTipoBonificacion(Long valor, Long cantidad){
-        appendChange(new AsesorBonificacionCambiada(valor,cantidad)).apply();
+    public void cambiarTipoBonificacion(AsesorId asesorId, Long valor, Long cantidad){
+        appendChange(new AsesorBonificacionCambiada(asesorId, valor,cantidad)).apply();
     }
 
     public void cambiarRolAsesor(CuentaAsesorId cuentaAsesorId, RolAsesor rolAsesor){

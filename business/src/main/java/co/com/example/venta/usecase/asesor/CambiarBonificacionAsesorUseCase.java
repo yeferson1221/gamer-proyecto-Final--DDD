@@ -16,7 +16,7 @@ public class CambiarBonificacionAsesorUseCase extends UseCase<RequestCommand<Cam
                 command.getAsesorId(), repository().getEventsBy(command.getAsesorId().value())
         );
 
-        asesor.cambiarTipoBonificacion(command.getValor(),command.getCantidad());
+        asesor.cambiarTipoBonificacion(command.getAsesorId(), command.getValor(),command.getCantidad());
 
         emit().onResponse(new ResponseEvents(asesor.getUncommittedChanges()));
 
