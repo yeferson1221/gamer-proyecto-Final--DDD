@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import org.sofka.venta.asesor.RolCuentaCambiadaAsesor;
+import org.sofka.venta.asesor.events.RolCuentaCambiadaAsesor;
 import org.sofka.venta.asesor.command.CambiarRolAsesorCommand;
 import org.sofka.venta.asesor.events.AsesorCreado;
 import org.sofka.venta.asesor.values.AsesorId;
@@ -21,7 +21,6 @@ import org.sofka.venta.asesor.values.RolAsesor;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)

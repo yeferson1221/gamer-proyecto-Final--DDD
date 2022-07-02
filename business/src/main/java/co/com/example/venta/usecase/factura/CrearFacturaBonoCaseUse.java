@@ -10,8 +10,8 @@ import org.sofka.venta.factura.command.CrearFacturaBeneficioCommand;
 
 public class CrearFacturaBonoCaseUse extends UseCase<RequestCommand<CrearFacturaBeneficioCommand>, ResponseEvents> {
     @Override
-    public void executeUseCase(RequestCommand<CrearFacturaBeneficioCommand> CrearFacturaBeneficioCommandRequestCommand) {
-        var command = CrearFacturaBeneficioCommandRequestCommand.getCommand();
+    public void executeUseCase(RequestCommand<CrearFacturaBeneficioCommand> crearFacturaBeneficioCommandRequestCommand) {
+        var command = crearFacturaBeneficioCommandRequestCommand.getCommand();
         var factura = new Factura(
                 command.getFacturaId(),
                 command.getValor(),

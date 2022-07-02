@@ -2,16 +2,16 @@ package org.sofka.venta.asesor;
 
 import co.com.sofka.domain.generic.Entity;
 import org.sofka.venta.asesor.values.BonificacionId;
-import org.sofka.venta.asesor.values.Tipo;
+import org.sofka.venta.asesor.values.TipoBonificacion;
 
 public class Bonificacion extends Entity<BonificacionId> {
 
-    private Tipo tipo;
+    private TipoBonificacion tipoBonificacion;
 
 
-    public Bonificacion(BonificacionId id, Tipo tipo) {
+    public Bonificacion(BonificacionId id, TipoBonificacion tipoBonificacion) {
         super(id);
-        this.tipo = tipo;
+        this.tipoBonificacion = tipoBonificacion;
     }
 /*
     public  void cambiarValor(Tipo tipos){

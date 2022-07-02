@@ -2,16 +2,10 @@ package org.sofka.venta.asesor;
 
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
+import org.sofka.venta.asesor.events.AsesorBonificacionCreado;
 import org.sofka.venta.asesor.events.AsesorCreado;
-import org.sofka.venta.asesor.values.AsesorId;
-import org.sofka.venta.asesor.values.CuentaAsesorId;
-import org.sofka.venta.asesor.values.Experiencia;
-import org.sofka.venta.asesor.values.RolAsesor;
-import org.sofka.venta.cliente.Cliente;
-import org.sofka.venta.cliente.events.RolCuentaCambiadaCliente;
-import org.sofka.venta.cliente.values.ClienteId;
-import org.sofka.venta.cliente.values.CuentaClienteId;
-import org.sofka.venta.cliente.values.RolCliente;
+import org.sofka.venta.asesor.events.RolCuentaCambiadaAsesor;
+import org.sofka.venta.asesor.values.*;
 
 import java.util.List;
 
@@ -24,6 +18,13 @@ public class Asesor extends AggregateEvent<AsesorId> {
     public Asesor(AsesorId entityId, CuentaAsesorId cuentaAsesorId, RolAsesor rolAsesor) {
         super(entityId);
         appendChange(new AsesorCreado(cuentaAsesorId, rolAsesor)).apply();
+        subscribe(new AsesorEventChange(this));
+
+    }
+
+    public Asesor(AsesorId entityId, CuentaAsesorId cuentaAsesorId, RolAsesor rolAsesor, BonificacionId bonificacionid, TipoBonificacion tipoBonificacion) {
+        super(entityId);
+        appendChange(new AsesorBonificacionCreado(cuentaAsesorId, rolAsesor,bonificacionid,tipoBonificacion)).apply();
         subscribe(new AsesorEventChange(this));
 
     }

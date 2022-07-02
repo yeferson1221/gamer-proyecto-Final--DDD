@@ -1,4 +1,4 @@
-package org.sofka.venta.asesor;
+package org.sofka.venta.asesor.events;
 
 import co.com.sofka.domain.generic.DomainEvent;
 import org.sofka.venta.asesor.values.CuentaAsesorId;

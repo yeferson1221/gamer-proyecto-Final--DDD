@@ -4,18 +4,18 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class Tipo implements ValueObject<Tipo.Props> {
+public class TipoBonificacion implements ValueObject<TipoBonificacion.Props> {
     private final Long valor;
     private final Long cantidad;
 
-    public Tipo(Long valor, Long cantidad) {
+    public TipoBonificacion(Long valor, Long cantidad) {
         this.valor = Objects.requireNonNull(valor,"No puede ser null");
         this.cantidad = Objects.requireNonNull(cantidad,"No puede ser null");
     }
 
 
-    public Tipo cambiarValor(Long valor, Long cantidad){
-        return new Tipo(valor,cantidad);
+    public TipoBonificacion cambiarValor(Long valor, Long cantidad){
+        return new TipoBonificacion(valor,cantidad);
     }
 
     @Override
