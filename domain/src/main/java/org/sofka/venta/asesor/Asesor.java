@@ -2,6 +2,7 @@ package org.sofka.venta.asesor;
 
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
+import org.sofka.venta.asesor.events.AsesorBonificacionCambiada;
 import org.sofka.venta.asesor.events.AsesorBonificacionCreado;
 import org.sofka.venta.asesor.events.AsesorCreado;
 import org.sofka.venta.asesor.events.RolCuentaCambiadaAsesor;
@@ -32,6 +33,10 @@ public class Asesor extends AggregateEvent<AsesorId> {
     private Asesor(AsesorId id) {
         super(id);
         subscribe(new AsesorEventChange(this));
+    }
+
+    public void cambiarTipoBonificacion(Long valor, Long cantidad){
+        appendChange(new AsesorBonificacionCambiada(valor,cantidad)).apply();
     }
 
     public void cambiarRolAsesor(CuentaAsesorId cuentaAsesorId, RolAsesor rolAsesor){

@@ -27,4 +27,7 @@ public class TipoBonificacion implements ValueObject<TipoBonificacion.Props> {
         Long valor();
         Long cantidad();
     }
+    public TipoBonificacion cambiarTipoBonificacion(Long valor, Long cantidad){
+        return new TipoBonificacion(valor,cantidad);
+    }
 }

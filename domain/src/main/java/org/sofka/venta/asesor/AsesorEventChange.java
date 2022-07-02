@@ -1,6 +1,7 @@
 package org.sofka.venta.asesor;
 
 import co.com.sofka.domain.generic.EventChange;
+import org.sofka.venta.asesor.events.AsesorBonificacionCambiada;
 import org.sofka.venta.asesor.events.AsesorBonificacionCreado;
 import org.sofka.venta.asesor.events.AsesorCreado;
 import org.sofka.venta.asesor.events.RolCuentaCambiadaAsesor;
@@ -27,6 +28,9 @@ public class AsesorEventChange extends EventChange {
         apply((AsesorBonificacionCreado event) ->{
             asesor.cuentaAsesor = new CuentaAsesor(event.getCuentaAsesorId(), event.getRolAsesor());
             asesor.bonificacion = new Bonificacion(event.getBonificacionId(),event.getTipoBonificacion());
+        });
+        apply((AsesorBonificacionCambiada event) ->{
+            asesor.cambiarTipoBonificacion(event.getValor(), event.getCantidad());
         });
     }
 }
